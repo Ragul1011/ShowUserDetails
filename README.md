@@ -1,7 +1,13 @@
 # ShowUserDetails
 
 My Moke API create using Beecetpor.com.
-My API Link : https://collectthedetails.free.beeceptor.com
+
+My API Link : https://collectthedetails.free.beeceptor.com  (using Beecetpor.com).
+
 Open index.html and run any brower.
-login or register and go to next page (it is dummy login page).
-see the user detils and you click the name and its show more details.
+
+Type any name and password to login or ,
+Fill the register form and click register ,
+And its go to next page (it is dummy login page).
+
+See the user detils and you click the name and its show more details.
