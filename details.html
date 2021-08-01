@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+<h3 style="text-align: center; color: rgb(134, 95, 243);"> Show User Details from the Mock API </h3>
+  <style>
+table, th, td {
+  text-align: center;
+  border: 1px solid rgb(136, 134, 134);
+  background-color: rgb(241, 95, 132);
+  border-collapse: collapse;
+  padding:5px;
+}
+
+#userdetailldiv {
+  display : none;
+}
+</style>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.js"></script>   
+<script>
+ var data = [];
+ var request = new XMLHttpRequest()
+request.open('GET', 'https://collectthedetails.free.beeceptor.com',true)
+request.onload = function () {
+  // Begin accessing JSON data here
+  data = JSON.parse(this.response)
+
+  if (request.status >= 200 && request.status < 400) {
+    var rows = "";
+    data.forEach((user) => {
+     rows += "<tr><td>" + user.no + "</td><td onclick='showUser(" + user.no + ")'  style='text-decoration: underline; color:blue; cursor:pointer'>" + user.name + " " + "</td><td>" + user.age + "</td><td>" + user.dob + "</td><td>" + user.firstName + "</td><td>" + user.lastName + "</td><td>";
+    });
+$( rows ).appendTo( "#userList tbody" ); 
+    
+  }
+}
+request.send(); 
+  
+function showUser(userNo) {
+  var rowUserData = data[Number(userNo) - 1];
+   document.userdetailform.address_line1.value = rowUserData.address_line1;
+   document.userdetailform.address_line2.value = rowUserData.address_line2;
+   document.userdetailform.address_line3.value = rowUserData.address_line3;
+  document.userdetailform.phone.value = rowUserData.phone;
+  $("#userdetailldiv").show();
+
+}
+ </script>
+    
+</head>
+<body>
+   
+<table id="userList">
+    <thead>
+        <tr>
+            <th>No</th>
+            <th>Name</th>
+            <th>Age</th>
+            <th>DOB</th>
+            <th>First Name</th>
+            <th>Last Name</th>
+        </tr>
+    </thead>
+    <tbody>
+    </tbody>
+</table>
+  
+<div style="padding-top:10px;background: rgb(185, 248, 199);" id="userdetailldiv">
+  <br/>
+  <h4 style="text-align: center;">More</h4>
+  <form id='userdetailform' name='userdetailform' >
+    <label style="color:rgb(146, 20, 248)">Address Line 1 : </label><input style="width:40%; height: 40%; border-radius: 5px; background: rgb(252, 168, 224);" name='address_line1' />
+    <br>
+    <label style="color:rgb(146, 20, 248)">Address Line 2 : </label><input style="width:40%; height: 40%; border-radius: 5px; background: rgb(252, 168, 224);" name='address_line2' />
+    <br>
+    <label style="color:rgb(146, 20, 248)">Address Line 3 : </label><input style="width:40%; height: 40%; border-radius: 5px; background: rgb(252, 168, 224);" name='address_line3' />
+    <br>
+    <label style="padding-right: 60px; color:rgb(248, 78, 78)">Phone :          </label><input style="width:40%; height: 40%; border-radius: 5px; background: rgb(243, 145, 145);" name='phone' />
+  </form>
+</div>
+  
+</body>
+</html>
