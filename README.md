@@ -2,7 +2,7 @@
 
 My Moke API create using Beecetpor.com.
 
-My API Link : https://collectthedetails.free.beeceptor.com  (using Beecetpor.com).
+My API Link : https://apitouserdatils.free.beeceptor.com  (using Beecetpor.com).
 
 Open index.html and run any brower.
 
