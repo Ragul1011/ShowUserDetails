@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+<h3 style="text-align: center; color: rgb(134, 95, 243);"> Show User Details from the Mock API </h3>
+  <style>
+table, th, td {
+  text-align: center;
+  color: aliceblue;
+  border: 1px solid rgb(136, 134, 134);
+  background-color: rgb(241, 95, 132);
+  border-collapse: collapse;
+  padding:5px;
+}
+
+#user {
+  display : none;
+}
+</style>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.js"></script>   
+<script>
+ var data = [];
+ var request = new XMLHttpRequest()
+request.open('GET', 'https://apitouserdatils.free.beeceptor.com',true)
+request.onload = function () {
+  // Begin accessing JSON data here
+  data = JSON.parse(this.response)
+
+  if (request.status >= 200 && request.status < 400) {
+    var rows = "";
+    data.forEach((user) => {
+     rows += "<tr><td>" + user.name + "</td><td>" 
+	 + user.age + "</td><td>" 
+	 + user.dob + "</td><td>" 
+   +user.firstName + "</td><td>" 
+	 + user.lastName 
+   +"</td><td onclick='show(" + user.no + ")'  style=' height:10px; text-decoration: underline; background: rgb(96, 96, 238); color:white;  cursor: pointer; border-radius: 10px;'>"
+    + user.more + " "
+    + "</td></tr>";
+    });
+$( rows ).appendTo( "#userList tbody" ); 
+    
+  }
+}
+request.send(); 
+  
+function show(userNo) {
+  var rowUserData = data[Number(userNo) - 1];
+   document.userdetailform.address_line1.value = rowUserData.address_line1;
+   document.userdetailform.address_line2.value = rowUserData.address_line2;
+   document.userdetailform.address_line3.value = rowUserData.address_line3;
+  document.userdetailform.phone.value = rowUserData.phone;
+  $("#user").show();
+
+}
+ </script>
+    
+</head>
+<body style="background: rgb(208, 243, 210);">
+   
+<table id="userList">
+    <thead>
+        <tr>
+            <th>No</th>
+            <th>Name</th>
+            <th>Age</th>
+            <th>DOB</th>
+            <th>First Name</th>
+            <th>Last Name</th>
+        </tr>
+    </thead>
+    <tbody>
+    </tbody>
+</table>
+  
+<div style="width: 82%; background: rgb(250, 179, 138);" id="user">
+  <br/>
+  <h4 style="text-align: center;">More Details</h4>
+  <form id='userdetailform' name='userdetailform' >
+    <label style="color:rgb(146, 20, 248)">Address Line 1 : </label><input style="width:40%; height: 40%; border-radius: 5px; background: rgb(252, 168, 224);" name='address_line1' />
+    <br>
+    <label style="color:rgb(146, 20, 248)">Address Line 2 : </label><input style="width:40%; height: 40%; border-radius: 5px; background: rgb(252, 168, 224);" name='address_line2' />
+    <br>
+    <label style="color:rgb(146, 20, 248)">Address Line 3 : </label><input style="width:40%; height: 40%; border-radius: 5px; background: rgb(252, 168, 224);" name='address_line3' />
+    <br>
+    <label style="padding-right: 60px; color:rgb(72, 75, 240)">Phone :  </label><input style="width:40%; height: 40%; border-radius: 5px; background: rgb(248, 181, 181);" name='phone' />
+  </form>
+</div>
+  
+</body>
+</html>
