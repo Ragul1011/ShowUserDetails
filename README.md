@@ -10,4 +10,5 @@ Type any name and password to login or ,
 Fill the register form and click register ,
 And its go to next page (it is dummy login page).
 
-See the user detils and you click the name and its show more details.
+See the user detils and ,
+you can click the More button and its show more details.
